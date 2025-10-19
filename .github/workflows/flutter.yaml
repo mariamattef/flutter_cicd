@@ -32,7 +32,3 @@ jobs:
           serviceCredentialsFileContent: ${{secrets.GOOGLE_APPLICATION_CREDENTIAL}}
           groups: testers
           file: build/app/outputs/flutter-apk/app-release.apk
-
-        with:
-          name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
