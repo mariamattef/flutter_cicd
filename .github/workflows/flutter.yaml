@@ -23,15 +23,20 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --release
+
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Run Fastlane
+        run: fastlane android firebase_distribution
+
       - name: Upload APK Artifact to firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{secrets.APP_ID}}
           serviceCredentialsFileContent: ${{secrets.GOOGLE_APPLICATION_CREDENTIAL}}
           groups: testers
-          file: build/app/outputs/flutter-apk/app-release.apk
+          filse: build/app/outputs/flutter-apk/app-release.apk
